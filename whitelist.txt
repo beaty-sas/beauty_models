@@ -1,0 +1,13 @@
+poolclass
+mymodel
+myapp
+sqlalchemy
+autogenerate
+nullable
+tablename
+orm
+srid
+tz
+autoincrement
+onupdate
+geoalchemy2
