@@ -7,11 +7,11 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: beauty_db
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/companion
+      - db_data:/var/lib/postgresql/beauty_db
 
   pgadmin:
     container_name: pgadmin_container
