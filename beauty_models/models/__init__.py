@@ -5,5 +5,5 @@ from .base import metadata
 from .business import Business
 from .business import business_services
 from .location import Location
-from .service import Service
+from .offer import Offer
 from .user import User

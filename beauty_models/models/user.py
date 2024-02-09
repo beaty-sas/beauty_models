@@ -8,9 +8,8 @@ from .base import BaseModel
 class User(BaseModel):
     __tablename__ = 'users'
 
-    sub = Column(String(200), unique=True, nullable=False)
+    sub = Column(String(200), unique=True)
     display_name = Column(String(200), nullable=False)
-    phone_number = Column(String(100), nullable=True)
-    email = Column(String(100), nullable=True)
+    phone_number = Column(String(100), nullable=False)
 
-    businesses = relationship('Business', back_populates='owner')
+    bookings = relationship('Booking', back_populates='user')
