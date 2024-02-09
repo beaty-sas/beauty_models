@@ -15,7 +15,6 @@ class Merchant(BaseModel):
     phone_number = Column(String(100), nullable=True)
 
     logo_id = Column(Integer, ForeignKey('attachments.id'))
-    business_id = Column(Integer, ForeignKey('businesses.id'))
 
     logo = relationship('Attachment', back_populates='merchants')
     businesses = relationship('Business', back_populates='owner')

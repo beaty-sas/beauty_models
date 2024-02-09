@@ -7,11 +7,11 @@ from sqlalchemy.orm import relationship
 
 from ..models import BaseModel
 
-booking_services_association = Table(
-    'booking_services_association',
+booking_offers_association = Table(
+    'booking_offers_association',
     BaseModel.metadata,
     Column('booking_id', ForeignKey('bookings.id'), primary_key=True),
-    Column('service_id', ForeignKey('services.id'), primary_key=True),
+    Column('offer_id', ForeignKey('offers.id'), primary_key=True),
 )
 
 
@@ -25,4 +25,4 @@ class Booking(BaseModel):
     business_id = Column(Integer, ForeignKey('businesses.id'), nullable=False)
 
     user = relationship('User', back_populates='bookings')
-    services = relationship('Service', secondary=booking_services_association, back_populates='bookings')
+    offers = relationship('Offer', back_populates='booking', secondary=booking_offers_association)

@@ -13,11 +13,12 @@ class Offer(BaseModel):
     __tablename__ = 'offers'
 
     name = Column(String(200), unique=True, nullable=False)
-    price = Column(DECIMAL(precision=10, scale=2), nullable=False)
+    price = Column(DECIMAL(precision=10, scale=2), nullable=False)  # type: ignore
     start_time = Column(DateTime())
     end_time = Column(DateTime())
 
     business = relationship('Business', secondary='business_offers', back_populates='offers')
+    booking = relationship('Booking', secondary='booking_offers_association', back_populates='offers')
 
     @property
     def duration(self) -> timedelta:
