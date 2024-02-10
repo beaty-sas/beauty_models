@@ -19,8 +19,8 @@ booking_offers_association = Table(
 class Booking(BaseModel):
     __tablename__ = 'bookings'
 
-    start_time = Column(DateTime, nullable=False)
-    end_time = Column(DateTime, nullable=False)
+    start_time = Column(DateTime(timezone=True), nullable=False)
+    end_time = Column(DateTime(timezone=True), nullable=False)
     price = Column(DECIMAL, nullable=False)
 
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
@@ -28,3 +28,4 @@ class Booking(BaseModel):
 
     user = relationship('User', back_populates='bookings')
     offers = relationship('Offer', back_populates='booking', secondary=booking_offers_association)
+    business = relationship('Business', back_populates='bookings')

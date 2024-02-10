@@ -32,3 +32,4 @@ class Business(BaseModel):
     location = relationship('Location', back_populates='businesses')
     working_hours = relationship('WorkingHours', back_populates='business')
     offers = relationship('Offer', secondary=business_offers, back_populates='businesses')
+    bookings = relationship('Booking', back_populates='business')
