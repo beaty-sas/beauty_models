@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import DECIMAL
@@ -17,9 +15,9 @@ class Offer(BaseModel):
     start_time = Column(DateTime())
     end_time = Column(DateTime())
 
-    business = relationship('Business', secondary='business_offers', back_populates='offers')
+    businesses = relationship('Business', secondary='business_offers', back_populates='offers')
     booking = relationship('Booking', secondary='booking_offers_association', back_populates='offers')
 
     @property
-    def duration(self) -> timedelta:
-        return timedelta(seconds=(self.end_time - self.start_time).seconds)
+    def duration(self) -> int:
+        return (self.end_time - self.start_time).seconds

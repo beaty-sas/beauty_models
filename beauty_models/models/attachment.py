@@ -11,5 +11,5 @@ class Attachment(BaseModel):
     original = Column(String, nullable=False)
     thumbnail = Column(String, nullable=False)
 
-    services = relationship('Service', back_populates='logo')
     businesses = relationship('Business', back_populates='logo')
+    merchants = relationship('Merchant', back_populates='logo')

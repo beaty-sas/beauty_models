@@ -1,5 +1,6 @@
 from sqlalchemy import Column
 from sqlalchemy import DateTime
+from sqlalchemy import DECIMAL
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import Table
@@ -20,6 +21,7 @@ class Booking(BaseModel):
 
     start_time = Column(DateTime, nullable=False)
     end_time = Column(DateTime, nullable=False)
+    price = Column(DECIMAL, nullable=False)
 
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     business_id = Column(Integer, ForeignKey('businesses.id'), nullable=False)
