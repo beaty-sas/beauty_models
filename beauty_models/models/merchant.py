@@ -10,7 +10,7 @@ from ..models import BaseModel
 class Merchant(BaseModel):
     __tablename__ = 'merchants'
 
-    sub = Column(String(200), unique=True, nullable=False)
+    sub = Column(String(200), unique=True, nullable=False, index=True)
     display_name = Column(String(100), nullable=False)
     phone_number = Column(String(100), nullable=True)
 
