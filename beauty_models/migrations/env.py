@@ -4,7 +4,11 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import create_engine
 
-from beauty_models.models import Base
+try:
+    # noinspection PyUnresolvedReferences
+    from beauty_models.models import Base
+except ImportError:
+    from beauty_models.beauty_models.models import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
