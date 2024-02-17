@@ -13,3 +13,6 @@ class Attachment(BaseModel):
 
     businesses = relationship('Business', back_populates='logo')
     merchants = relationship('Merchant', back_populates='logo')
+
+    def __str__(self):
+        return f'{self.id}: {self.original}'

@@ -13,3 +13,6 @@ class User(BaseModel):
     phone_number = Column(String(100), nullable=False, index=True)
 
     bookings = relationship('Booking', back_populates='user')
+
+    def __str__(self):
+        return f'{self.id}: {self.display_name}, {self.sub}'

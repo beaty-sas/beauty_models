@@ -18,3 +18,6 @@ class Merchant(BaseModel):
 
     logo = relationship('Attachment', back_populates='merchants')
     businesses = relationship('Business', back_populates='owner')
+
+    def __str__(self):
+        return f'{self.id}: {self.display_name}, {self.sub}'

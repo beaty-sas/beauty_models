@@ -1,5 +1,4 @@
 from sqlalchemy import Column
-from sqlalchemy import DateTime
 from sqlalchemy import DECIMAL
 from sqlalchemy import Integer
 from sqlalchemy import String
@@ -17,3 +16,6 @@ class Offer(BaseModel):
 
     businesses = relationship('Business', secondary='business_offers', back_populates='offers')
     booking = relationship('Booking', secondary='booking_offers_association', back_populates='offers')
+
+    def __str__(self):
+        return f'{self.id}: {self.name}'
