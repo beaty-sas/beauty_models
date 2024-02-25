@@ -43,13 +43,6 @@ def upgrade() -> None:
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint('id'),
     )
-    op.create_index(
-        'idx_locations_geom',
-        'locations',
-        ['geom'],
-        unique=False,
-        postgresql_using='gist',
-    )
     op.create_table(
         'offers',
         sa.Column('name', sa.String(length=200), nullable=False),

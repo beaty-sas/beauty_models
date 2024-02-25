@@ -21,11 +21,58 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
 
-
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+IGNORE_TABLES = [
+    'geocode_settings',
+    'zip_lookup',
+    'zip_state_loc',
+    'addrfeat',
+    'zip_lookup_base',
+    'street_type_lookup',
+    'loader_platform',
+    'state_lookup',
+    'countysub_lookup',
+    'county_lookup',
+    'bg',
+    'addr',
+    'state',
+    'tract',
+    'topology',
+    'cousub',
+    'tabblock20',
+    'loader_lookuptables',
+    'secondary_unit_lookup',
+    'pagc_lex',
+    'loader_variables',
+    'pagc_gaz',
+    'featnames',
+    'tabblock',
+    'faces',
+    'layer',
+    'pagc_rules',
+    'place',
+    'pagc_rules',
+    'zip_lookup_all',
+    'zcta5',
+    'geocode_settings_default',
+    'county',
+    'place_lookup',
+    'direction_lookup',
+    'zip_state',
+    'spatial_ref_sys',
+    'edges',
+]
+
+
+def include_object(object, name, type_, reflected, compare_to):
+    if type_ == 'table' and (name in IGNORE_TABLES or object.info.get('skip_autogenerate', False)):
+        return False
+
+    return True
 
 
 def get_url():
@@ -53,6 +100,8 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={'paramstyle': 'named'},
+        include_object=include_object,
+        compare_type=True,
     )
 
     with context.begin_transaction():
@@ -69,7 +118,12 @@ def run_migrations_online() -> None:
     connectable = create_engine(get_url())
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+            include_object=include_object,
+            compare_type=True,
+        )
 
         with context.begin_transaction():
             context.run_migrations()

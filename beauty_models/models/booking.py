@@ -1,6 +1,9 @@
+from enum import Enum
+
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import DECIMAL
+from sqlalchemy import Enum as SaEnum
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import Table
@@ -16,12 +19,19 @@ booking_offers_association = Table(
 )
 
 
+class BookingStatus(str, Enum):
+    ACTIVE = 'ACTIVE'
+    CANCELLED = 'CANCELLED'
+    COMPLETED = 'COMPLETED'
+
+
 class Booking(BaseModel):
     __tablename__ = 'bookings'
 
     start_time = Column(DateTime(timezone=True), nullable=False)
     end_time = Column(DateTime(timezone=True), nullable=False)
     price = Column(DECIMAL, nullable=False)
+    status: Column[BookingStatus] = Column(SaEnum(BookingStatus), nullable=False, default=BookingStatus.ACTIVE)
 
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     business_id = Column(Integer, ForeignKey('businesses.id'), nullable=False)

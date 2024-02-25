@@ -4,6 +4,7 @@ from .base import BaseModel
 from .base import metadata
 from .booking import Booking
 from .booking import booking_offers_association
+from .booking import BookingStatus
 from .business import Business
 from .business import business_offers
 from .location import Location
