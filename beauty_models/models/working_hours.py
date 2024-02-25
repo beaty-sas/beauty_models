@@ -18,3 +18,6 @@ class WorkingHours(BaseModel):
     business_id = Column(Integer, ForeignKey('businesses.id'), nullable=False)
 
     business = relationship('Business', back_populates='working_hours')
+
+    def __str__(self):
+        return f'{self.id}: {self.date} {self.opening_time} - {self.closing_time}. Business: {self.business_id}'

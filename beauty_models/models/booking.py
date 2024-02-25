@@ -39,3 +39,6 @@ class Booking(BaseModel):
     user = relationship('User', back_populates='bookings')
     offers = relationship('Offer', back_populates='booking', secondary=booking_offers_association)
     business = relationship('Business', back_populates='bookings')
+
+    def __str__(self):
+        return f'{self.id}: {self.start_time} - {self.end_time}. User: {self.user_id}'

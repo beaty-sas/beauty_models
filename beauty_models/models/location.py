@@ -13,3 +13,6 @@ class Location(BaseModel):
     geom = Column(Geometry('POINT', srid=4326))
 
     businesses = relationship('Business', back_populates='location')
+
+    def __str__(self):
+        return f'{self.id}: {self.name}'
