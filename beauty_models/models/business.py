@@ -12,7 +12,7 @@ business_offers = Table(
     'business_offers',
     Base.metadata,
     Column('business_id', Integer, ForeignKey('businesses.id')),
-    Column('offer_id', Integer, ForeignKey('offers.id'))
+    Column('offer_id', Integer, ForeignKey('offers.id')),
 )
 
 
@@ -20,6 +20,7 @@ class Business(BaseModel):
     __tablename__ = 'businesses'
 
     name = Column(String(200), unique=True, nullable=False, index=True)
+    slug = Column(String(200), unique=True, nullable=False, index=True)
     display_name = Column(String(200), nullable=False)
     phone_number = Column(String(100), nullable=True)
 

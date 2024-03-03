@@ -11,3 +11,4 @@ tz
 autoincrement
 onupdate
 geoalchemy2
+noinspection
