@@ -31,8 +31,8 @@ class Business(BaseModel):
     location_id = Column(Integer, ForeignKey('locations.id'))
 
     owner = relationship('Merchant', back_populates='businesses')
-    logo = relationship('Attachment', back_populates='businesses_logo')
-    banner = relationship('Attachment', back_populates='businesses_banner')
+    logo = relationship('Attachment', back_populates='businesses_logo', foreign_keys=[logo_id])
+    banner = relationship('Attachment', back_populates='businesses_banner', foreign_keys=[banner_id])
     location = relationship('Location', back_populates='businesses')
     working_hours = relationship('WorkingHours', back_populates='business')
     offers = relationship('Offer', secondary=business_offers, back_populates='businesses')
