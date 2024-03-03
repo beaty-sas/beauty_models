@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 try:
     # noinspection PyUnresolvedReferences
-    from ..models import Base
+    from beauty_models.models import Base
 except ImportError:
     from beauty_models.beauty_models.models import Base
 

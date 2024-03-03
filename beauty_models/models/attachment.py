@@ -11,7 +11,8 @@ class Attachment(BaseModel):
     original = Column(String, nullable=False)
     thumbnail = Column(String, nullable=False)
 
-    businesses = relationship('Business', back_populates='logo')
+    businesses_logo = relationship('Business', back_populates='logo')
+    businesses_banner = relationship('Business', back_populates='banner')
     merchants = relationship('Merchant', back_populates='logo')
     bookings = relationship('Booking', back_populates='attachments', secondary='booking_attachments_association')
 
