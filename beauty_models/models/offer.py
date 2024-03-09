@@ -1,8 +1,10 @@
+from sqlalchemy import Boolean
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import DECIMAL
 from sqlalchemy import Integer
 from sqlalchemy import String
+from sqlalchemy import text
 from sqlalchemy.orm import relationship
 
 from .base import BaseModel
@@ -15,6 +17,7 @@ class Offer(BaseModel):
     price = Column(DECIMAL(precision=10, scale=2), nullable=False)  # type: ignore
     duration = Column(Integer, nullable=False)
     deleted_at = Column(DateTime, nullable=True)
+    allow_photo = Column(Boolean, nullable=True, server_default=text('false'))
 
     businesses = relationship('Business', secondary='business_offers', back_populates='offers')
     booking = relationship('Booking', secondary='booking_offers_association', back_populates='offers')
